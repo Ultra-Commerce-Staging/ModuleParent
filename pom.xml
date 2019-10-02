@@ -639,23 +639,6 @@
             </build>
         </profile>
         <profile>
-            <id>build-sources</id>
-            <activation>
-                <property>
-                    <name>attachSources</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>security-check</id>
             <build>
                 <plugins>
