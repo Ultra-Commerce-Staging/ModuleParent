@@ -33,6 +33,7 @@
         <spock.core.version>1.0-groovy-2.3</spock.core.version>
         <spring.test.version>4.1.9.RELEASE</spring.test.version>
         <spring.instrument.version>4.1.9.RELEASE</spring.instrument.version>
+        <gpg.plugin.version>1.6</gpg.plugin.version>
     </properties>
     <build>
         <pluginManagement>
@@ -347,7 +348,7 @@
             <id>releases</id>
             <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
         </repository>
-    </distributionManagement> 
+    </distributionManagement>
     <profiles>
         <profile>
             <id>only-eclipse</id>
@@ -505,24 +506,18 @@
             </build>
         </profile>
         <profile>
+            <!-- IMPORTANT -->
+            <!-- This relies on a gpg.passphrase property set either at build time or in a settings.xml. If within
+               a <profile><properties> section, that <profile><id> must match _exactly_ to this id for gpg.passphrase to be picked up.
+               You know you have messed up if, on signing, GPG signing fails with this message:
+                   "gpg: signing failed: Inappropriate ioctl for device" -->
             <id>release-sign-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
-                        <!-- IMPORTANT -->
-                        <!-- This relies on a gpg.passphrase property set either at build time or in a settings.xml. If within
-                             a <profile><properties> section, that <profile><id> must match _exactly_ to this id for gpg.passphrase to be picked up.
-                             You know you have messed up if, on signing, GPG signing fails with this message:
-                                 "gpg: signing failed: Inappropriate ioctl for device" -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>${gpg.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -536,6 +531,38 @@
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>
                                     </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- IMPORTANT -->
+            <!-- This relies on a gpg.passphrase property set either at build time or in a settings.xml. If within
+               a <profile><properties> section, that <profile><id> must match _exactly_ to this id for gpg.passphrase to be picked up.
+               You know you have messed up if, on signing, GPG signing fails with this message:
+                   "gpg: signing failed: Inappropriate ioctl for device" -->
+            <!-- Older versions of GPG (specifically versions older than 2.2) don't know about a pinentry-mode argument. As a
+                result, signing will fail. If we ever retire the old build server (that still needs GPG prior to 2.2 because of the older
+                version of Ubuntu and requirement to work with older builds -->
+            <id>release-sign-artifacts-old-gpg</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${gpg.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>info@broadleafcommerce.org</keyname>
                                 </configuration>
                             </execution>
                         </executions>
