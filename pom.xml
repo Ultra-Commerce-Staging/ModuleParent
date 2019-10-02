@@ -572,12 +572,6 @@
         </profile>
         <profile>
             <id>javadocs</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -589,12 +583,6 @@
         </profile>
         <profile>
             <id>sources</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
