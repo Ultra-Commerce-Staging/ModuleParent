@@ -298,23 +298,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.6</version>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                            <configuration>
-                                <keyname>info@broadleafcommerce.org</keyname>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.10.4</version>
                     <executions>
@@ -593,9 +576,14 @@
             <build>
                 <plugins>
                     <plugin>
+                        <!-- IMPORTANT -->
+                        <!-- This relies on a gpg.passphrase property set either at build time or in a settings.xml. If within
+                             a <profile><properties> section, that <profile><id> must match _exactly_ to this id for gpg.passphrase to be picked up.
+                             You know you have messed up if, on signing, GPG signing fails with this message:
+                                 "gpg: signing failed: Inappropriate ioctl for device" -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
+                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -605,6 +593,10 @@
                                 </goals>
                                 <configuration>
                                     <keyname>info@broadleafcommerce.org</keyname>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
                                 </configuration>
                             </execution>
                         </executions>
