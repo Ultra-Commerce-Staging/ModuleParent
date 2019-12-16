@@ -199,6 +199,12 @@
                     <version>2.19.1</version>
                     <executions>
                         <execution>
+                          <configuration>
+                              <includes>
+                                  <!-- Include all the default Surefire tests -->
+                                  <include>**/*ITSpec*</include>
+                              </includes>
+                          </configuration>
                             <goals>
                                 <goal>integration-test</goal>
                                 <goal>verify</goal>
