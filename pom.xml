@@ -130,7 +130,7 @@
                                     <include>**/Test*.java,**/*Test.java,**/*TestCase.java,**/*Spec*</include>
                                 </includes>
                                 <excludes>
-                                    <exclude>**/adminjvm/**,**/sitejvm/**,**/browsertests/**,**/*ITSpec*</exclude>
+                                    <exclude>**/adminjvm/**,**/sitejvm/**,**/browsertests/**</exclude>
                                 </excludes>
                             </configuration>
                         </execution>
@@ -199,12 +199,6 @@
                     <version>2.19.1</version>
                     <executions>
                         <execution>
-                          <configuration>
-                              <includes>
-                                  <!-- Include all the default Surefire tests -->
-                                  <include>**/*ITSpec*</include>
-                              </includes>
-                          </configuration>
                             <goals>
                                 <goal>integration-test</goal>
                                 <goal>verify</goal>
@@ -212,6 +206,7 @@
                         </execution>
                     </executions>
                     <configuration>
+                        <reuseForks>false</reuseForks>
                         <argLine>
                             -Xmx1g
                             -javaagent:"${project.build.directory}/agents/spring-instrument.jar"
