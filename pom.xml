@@ -179,6 +179,7 @@
                         </execution>
                     </executions>
                     <configuration>
+                        <reuseForks>false</reuseForks>
                         <argLine>
                             -Xmx1g
                             -javaagent:"${project.build.directory}/agents/spring-instrument.jar"
@@ -199,6 +200,7 @@
                         </execution>
                     </executions>
                     <configuration>
+                      <reuseForks>false</reuseForks>
                         <argLine>
                             -Xmx1g
                             -javaagent:"${project.build.directory}/agents/spring-instrument.jar"
