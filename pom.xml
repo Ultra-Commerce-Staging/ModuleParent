@@ -32,10 +32,10 @@
         <groovy.version>2.4.15</groovy.version>
         <spock.spring.version>1.1-groovy-2.4</spock.spring.version>
         <spock.core.version>1.1-groovy-2.4</spock.core.version>
-        <spring.test.version>5.1.4.RELEASE</spring.test.version>
-        <spring.instrument.version>5.1.4.RELEASE</spring.instrument.version>
-        <jackson.version>2.9.6</jackson.version>
-        <lombok.version>1.16.22</lombok.version>
+        <spring.test.version>5.1.13.RELEASE</spring.test.version>
+        <spring.instrument.version>5.1.13.RELEASE</spring.instrument.version>
+        <jackson.version>2.9.8</jackson.version>
+        <lombok.version>1.18.4</lombok.version>
         <hsqldb.version>2.4.1</hsqldb.version>
         <gpg.plugin.version>1.6</gpg.plugin.version>
     </properties>
