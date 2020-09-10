@@ -1,29 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.broadleafcommerce</groupId>
-    <artifactId>broadleaf-module-parent</artifactId>
+    <groupId>com.ultracommerce</groupId>
+    <artifactId>ultracommerce-module-parent</artifactId>
     <version>2.0.18-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Plugin Helper</name>
     <description>Contains plugin definitions and versions so that they do not pollute all projects</description>
 
     <scm>
-        <connection>scm:git:git@github.com:BroadleafCommerce/ModuleParent.git</connection>
-        <developerConnection>scm:git:git@github.com:BroadleafCommerce/ModuleParent.git</developerConnection>
-        <url>https://github.com/BroadleafCommerce/ModuleParent</url>
+        <connection>scm:git:git@github.com:Ultra-Commerce-Staging/ModuleParent.git</connection>
+        <developerConnection>scm:git:git@github.com:Ultra-Commerce-Staging/ModuleParent.git</developerConnection>
+        <url>https://github.com/Ultra-Commerce-Staging/ModuleParent</url>
         <tag>HEAD</tag>
     </scm>
-    <url>http://www.broadleafcommerce.com</url>
+    <url>https://ultracommerce.co</url>
     <repositories>
         <repository>
-            <id>releases</id>
-            <name>public releases</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/groups/community-releases/</url>
-        </repository>
-        <repository>
-            <id>snapshots</id>
-            <name>public snapshots</name>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/groups/community-snapshots/</url>
+            <id>ultracommerce</id>
+            <name>ultracommerce</name>
+            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
         </repository>
         <!-- TODO: Required for TestNG 6.12+ since it is not in Maven Central. See
             https://groups.google.com/forum/#!topic/testng-users/nIGIqKliavM discussion for the latest
@@ -272,9 +267,9 @@
                         <verbose>false</verbose>
                         <addSvnKeyWords>false</addSvnKeyWords>
                         <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
-                        <organizationName>Broadleaf Commerce</organizationName>
+                        <organizationName>Ultracommerce</organizationName>
                         <inceptionYear>2009</inceptionYear>
-                        <licenseName>blc_confidential</licenseName>
+                        <licenseName>uc_confidential</licenseName>
                         <licenseResolver>${project.baseUri}/licenses</licenseResolver>
                         <excludes>
                             <exclude>**/*.sql</exclude>
@@ -407,12 +402,12 @@
     </build>
     <distributionManagement>
         <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/snapshots/</url>
+            <id>ultracommerce</id>
+            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
         </snapshotRepository>
         <repository>
-            <id>releases</id>
-            <url>http://nexus.broadleafcommerce.org/nexus/content/repositories/releases/</url>
+            <id>ultracommerce</id>
+            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
         </repository>
     </distributionManagement>
     <profiles>
@@ -522,7 +517,7 @@
             </build>
         </profile>
         <profile>
-            <id>blc-development</id>
+            <id>uc-development</id>
             <build>
                 <plugins>
                     <plugin>
@@ -601,38 +596,6 @@
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>
                                     </gpgArguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- IMPORTANT -->
-            <!-- This relies on a gpg.passphrase property set either at build time or in a settings.xml. If within
-               a <profile><properties> section, that <profile><id> must match _exactly_ to this id for gpg.passphrase to be picked up.
-               You know you have messed up if, on signing, GPG signing fails with this message:
-                   "gpg: signing failed: Inappropriate ioctl for device" -->
-            <!-- Older versions of GPG (specifically versions older than 2.2) don't know about a pinentry-mode argument. As a
-                result, signing will fail. If we ever retire the old build server (that still needs GPG prior to 2.2 because of the older
-                version of Ubuntu and requirement to work with older builds -->
-            <id>release-sign-artifacts-old-gpg</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${gpg.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                                <configuration>
-                                    <keyname>info@broadleafcommerce.org</keyname>
                                 </configuration>
                             </execution>
                         </executions>
