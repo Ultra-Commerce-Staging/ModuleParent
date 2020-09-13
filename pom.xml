@@ -15,11 +15,6 @@
     </scm>
     <url>https://ultracommerce.co</url>
     <repositories>
-        <repository>
-            <id>ultracommerce</id>
-            <name>ultracommerce</name>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
-        </repository>
         <!-- TODO: Required for TestNG 6.12+ since it is not in Maven Central. See
             https://groups.google.com/forum/#!topic/testng-users/nIGIqKliavM discussion for the latest
 			status -->
@@ -403,11 +398,11 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ultracommerce</id>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
+            <url>https://nexus.ultracommerce.io/repository/ultracommerce</url>
         </snapshotRepository>
         <repository>
             <id>ultracommerce</id>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
+            <url>https://nexus.ultracommerce.io/repository/ultracommerce</url>
         </repository>
     </distributionManagement>
     <profiles>
