@@ -14,13 +14,6 @@
         <tag>HEAD</tag>
     </scm>
     <url>https://ultracommerce.co</url>
-    <repositories>
-        <repository>
-            <id>ultracommerce</id>
-            <name>ultracommerce</name>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
-        </repository>
-    </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <attachSources>true</attachSources>
@@ -396,11 +389,11 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ultracommerce</id>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
+            <url>https://nexus.ultracommerce.io/repository/ultracommerce</url>
         </snapshotRepository>
         <repository>
             <id>ultracommerce</id>
-            <url>https://repository.broadleafcommerce.com/repository/ultracommerce/</url>
+            <url>https://nexus.ultracommerce.io/repository/ultracommerce</url>
         </repository>
     </distributionManagement>
     <profiles>
